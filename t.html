@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>t</title>
+	<!--<script src="t.js"></script>-->
+	<style></style>
+</head>
+<body>
+	<h1>spinbox test</h1>
+	<input type="text" id="t01" class="inp_text" value="0">
+	<label for="t01" style="display:none;">테스트 폼</label>
+	<button class="btn_up">up</button>
+	<button class="btn_down">down</button>
+
+	<script>
+		/* specs
+		- btn up > count up
+		- btn down > count down until -10
+
+		- press btn > keep up and down
+
+		- key up > count up
+		- key down > count down
+		- accelation after 1 sec 2 times fast
+		* */
+
+		function Spinbox() {
+			this.inp = document.querySelector('.inp_text');
+			this.btn_up = document.querySelector('.btn_up');
+		  	this.btn_down = document.querySelector('.btn_down');
+		  	this.data = this.inp.value;
+		  	this.bindEvents();
+		}
+		Spinbox.prototype.bindEvents = function (){
+			this.btn_up.addEventListener('mousedown',this.up.bind(this));
+//			this.btn_up.addEventListener('click',this.up.bind(this));
+
+			this.btn_down.addEventListener('click',this.down.bind(this));
+		};
+		Spinbox.prototype.up = function (){
+//			console.log(this.event);
+			this.inp.value = Number(this.inp.value)+1;
+		};
+		Spinbox.prototype.down = function (){
+			this.inp.value = Number(this.inp.value)-1;
+		};
+		var sp = new Spinbox();
+	</script>
+</body>
+</html>
